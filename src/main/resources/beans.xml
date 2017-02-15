@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- <bean id="address" class="com.spring.demo.pojo.Address">
+    	<property name="address" value="SJ"></property>
+    	<property name="country" value="USA"></property>
+    	<property name="phoneNo" value="64845"></property>   
+    </bean>
+    
+    <bean id="employee" class="com.spring.demo.pojo.Employee">
+    	<property name="name" value="Chi"></property>
+    	<property name="address" ref="address"></property>
+    	<property name="salary" value="120.25"></property>
+    	<constructor-arg index="0" value="Chi"></constructor-arg>
+    	<constructor-arg index="1" ref="address"></constructor-arg>
+    	<constructor-arg index="2" value="120.25"></constructor-arg>
+    </bean> -->
+    
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <!-- results in a setDriverClassName(String) call -->
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/java_data"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="huuchi12"/>
+	</bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource" />
+	    <property name="packagesToScan" value="com.spring.demo.pojo" />
+	    <property name="hibernateProperties">
+	        <props>
+	            <prop key="dialect">
+	                org.hibernate.dialect.MySQLDialect
+	            </prop>
+	            <prop key="hibernate.show_sql">
+	                true
+	            </prop>
+	        </props>
+	    </property>
+	</bean>
+    
+</beans>
