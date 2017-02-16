@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/dologin.com", method = RequestMethod.POST)
-	public String doLogin(Model model, HttpSession session, @ModelAttribute("loginObject") LoginVO loginVO) {
+	public String doLogin(Model model, HttpSession session, HttpServletResponse response,
+			@ModelAttribute("loginObject") LoginVO loginVO) {
 
 		User user = loginService.validateUser(loginVO.getUsername(), loginVO.getPassword());
 
@@ -67,6 +70,9 @@ public class LoginController {
 			UserVO userVO = new UserVO();
 
 			session.setAttribute("name", user.getName());
+
+			Cookie cookie = new Cookie("username", "Root");
+			response.addCookie(cookie);
 
 			List<User> users = loginService.findAllUsers();
 

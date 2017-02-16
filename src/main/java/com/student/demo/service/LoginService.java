@@ -16,14 +16,13 @@ public class LoginService {
 
 	public User validateUser(String username, String password) {
 
-		return userDao.getUserByUsernameAndPassword(username, password);
-
 		/*
 		 * User user = userDao.getUserByUsernameAndPassword(username, password);
 		 * 
 		 * if(user == null) { return false; } else { return true; }
 		 */
 
+		return userDao.getUserByUsernameAndPassword(username, password);
 	}
 
 	public List<User> findAllUsers() {
