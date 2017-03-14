@@ -3,38 +3,36 @@ package com.student.demo.dao;
 import java.util.List;
 
 import org.hibernate.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.student.demo.pojo.User;
-import com.student.demo.util.HibernateUtil;
 
 @Repository
 public class UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public User getUserByUsernameAndPassword(String username, String password)	{
-		
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//		Session session = sessionFactory.openSession();
-		
+
+		//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		//		Session session = sessionFactory.openSession();
+
 		Session session = null;
-		
+
 		try {
 			session = sessionFactory.openSession();
-			
+
 			Query query = session.createQuery("from User where username=:username and password=:password");
 			query.setParameter("username", username);
 			query.setParameter("password", password);
-			
-			User user = (User) query.uniqueResult();			
-			
+
+			User user = (User) query.uniqueResult();
+
 			return user;
-			
+
 		}
 		catch (Exception e){
 			return null;
@@ -42,20 +40,20 @@ public class UserDao {
 		finally	{
 			session.close();
 		}
-		
-		
+
+
 	}
 
 	public List<User> findAll() {
-		
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+		//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = null;
-		
+
 		try {
 			session = sessionFactory.openSession();
-			
+
 			Query query = session.createQuery("from User");
-			
+
 			return query.list();
 		}
 		catch (Exception e){
@@ -65,21 +63,21 @@ public class UserDao {
 		finally	{
 			session.close();
 		}
-		
+
 	}
 
 	public void insert(User user) {
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = null;
-		
+
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 
 			session.save(user);
-			
-			session.getTransaction().commit();	
-			
+
+			session.getTransaction().commit();
+
 		}
 		catch (Exception e){
 			if (session.getTransaction() != null)	{
@@ -89,14 +87,14 @@ public class UserDao {
 		finally	{
 			session.close();
 		}
-		
-		
+
+
 	}
 
 	public void delete(Integer id) {
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = null;
-		
+
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
@@ -104,9 +102,9 @@ public class UserDao {
 			Query query = session.createQuery("delete from User where id=:param");
 			query.setParameter("param", id);
 			query.executeUpdate();
-			
-			session.getTransaction().commit();	
-			
+
+			session.getTransaction().commit();
+
 		}
 		catch (Exception e){
 			if (session.getTransaction() != null)	{
@@ -120,13 +118,13 @@ public class UserDao {
 
 
 	public User findById(Integer id) {
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = null;
-		
+
 		try {
 			session = sessionFactory.openSession();
 			User user = (User) session.get(User.class, id);
-			
+
 			return user;
 		}
 		catch (Exception e){
@@ -135,22 +133,21 @@ public class UserDao {
 		finally	{
 			session.close();
 		}
-		
-		
+
 	}
 
 	public void update(User user) {
-//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		//		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = null;
-		
+
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 
 			session.update(user);
-			
-			session.getTransaction().commit();	
-			
+
+			session.getTransaction().commit();
+
 		}
 		catch (Exception e){
 			if (session.getTransaction() != null)	{
@@ -160,9 +157,9 @@ public class UserDao {
 		finally	{
 			session.close();
 		}
-		
+
 	}
-	
-	
+
+
 
 }

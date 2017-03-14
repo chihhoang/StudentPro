@@ -12,30 +12,31 @@ import com.student.demo.pojo.User;
 import com.student.demo.service.LoginService;
 import com.student.demo.service.UserService;
 
+//Using Spring to build controller instead of this servlet
 public class DeleteServlet extends HttpServlet {
-	
+
 	LoginService loginService = new LoginService();
 	UserService userService = new UserService();
-	
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		userService.deleteUserByUserId(id);
-		
+
 		List<User> list = loginService.findAllUsers();
 		request.setAttribute("list", list);
-		
+
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
-		
-		
+
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 }

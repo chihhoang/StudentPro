@@ -13,6 +13,7 @@ import com.student.demo.service.LoginService;
 import com.student.demo.service.UserService;
 import com.student.demo.vo.UserVO;
 
+//Using Spring to build controller instead of this servlet
 public class EditServlet extends HttpServlet {
 
 	UserService userService = new UserService();

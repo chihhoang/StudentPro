@@ -2,6 +2,7 @@ package com.student.demo.vo;
 
 import java.util.Date;
 
+// Process data without exposing our database via Hibernate annotations
 public class UserVO {
 
 	private Integer id;
@@ -10,8 +11,8 @@ public class UserVO {
 	private String username;
 	private String password;
 	private Date dob;
-	
-	
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -48,7 +49,7 @@ public class UserVO {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	
-	
-	
+
+
+
 }

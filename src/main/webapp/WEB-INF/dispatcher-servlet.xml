@@ -11,7 +11,6 @@
     
 	<context:component-scan base-package="com.student.demo"/>
 	
-	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 	    <property name="url" value="jdbc:mysql://localhost:3306/java_data"/>
@@ -19,19 +18,19 @@
 	    <property name="password" value="huuchi12"/>
 	</bean>
     
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-	    <property name="dataSource" ref="dataSource" />
-	    <property name="packagesToScan" value="com.student.demo.pojo" />
-	    <property name="hibernateProperties">
-	        <props>
-	            <prop key="dialect">
-	                org.hibernate.dialect.MySQLDialect
-	            </prop>
-	            <prop key="hibernate.show_sql">
-	                true
-	            </prop>
-	        </props>
-	    </property>
+   <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="packagesToScan" value="com.student.demo.pojo" />
+    <property name="hibernateProperties">
+        <props>
+            <prop key="dialect">
+                org.hibernate.dialect.MySQLDialect
+            </prop>
+            <prop key="hibernate.show_sql">
+                true
+            </prop>
+        </props>
+    </property>
 	</bean>
 	
     

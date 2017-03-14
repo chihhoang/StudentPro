@@ -14,6 +14,7 @@ import com.student.demo.pojo.User;
 import com.student.demo.service.LoginService;
 import com.student.demo.service.UserService;
 
+// Using Spring to build controller instead of this servlet
 public class ProcessUserServlet extends HttpServlet {
 
 	UserService userService = new UserService();
